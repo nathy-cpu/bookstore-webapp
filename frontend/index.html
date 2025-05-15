@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookstore</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Bookstore</h1>
+      <nav>
+        <button id="menu-btn">☰</button>
+        <ul id="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Books</a></li>
+          <li>
+            <a href="#">Cart (<span id="cart-count">0</span>)</a>
+          </li>
+          <li><a href="/admin.html">Admin</a></li>
+          <li><a href="#" id="login-btn">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="search-filters">
+        <input type="text" id="search-input" placeholder="Search books..." />
+        <button id="search-btn">Search</button>
+        <div class="filter-options">
+          <select id="genre-filter">
+            <option value="">All Genres</option>
+          </select>
+          <label
+            ><input type="checkbox" name="stock" value="in-stock" /> In Stock
+            Only</label
+          >
+        </div>
+      </section>
+
+      <section id="book-list" class="book-grid">
+        <!-- Books will be inserted here by JavaScript -->
+      </section>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
