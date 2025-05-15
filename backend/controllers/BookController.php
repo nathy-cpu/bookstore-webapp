@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . "./../models/Book.php";
-require_once __DIR__ . "./../models/Category.php";
-require_once __DIR__ . "./../utils/helpers.php";
+require_once __DIR__ . "/../models/Book.php";
+require_once __DIR__ . "/../models/Category.php";
+require_once __DIR__ . "/../utils/helpers.php";
 
 class BookController
 {

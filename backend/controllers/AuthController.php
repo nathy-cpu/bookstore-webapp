@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . './../models/User.php';
-require_once __DIR__ . './../utils/helper.php';
-require_once __DIR__ . './../utils/validators.php';
+require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../utils/helper.php';
+require_once __DIR__ . '/../utils/validators.php';
 
 class AuthController
 {

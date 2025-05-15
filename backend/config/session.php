@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "./bootstrap.php";
+require_once __DIR__ . "/bootstrap.php";
 
 // Session configuration
 ini_set("session.cookie_lifetime", getenv("SESSION_TIMEOUT"));
