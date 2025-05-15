@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "./../config/database.php";
 
 class Cart
 {
@@ -79,4 +79,3 @@ class Cart
         return $stmt->execute([":user_id" => $user_id]);
     }
 }
-?>

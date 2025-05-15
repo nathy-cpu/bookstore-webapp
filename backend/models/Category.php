@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "./../config/database.php";
 
 class Category
 {
@@ -44,4 +44,3 @@ class Category
         return $this->findById($this->pdo->lastInsertId());
     }
 }
-?>

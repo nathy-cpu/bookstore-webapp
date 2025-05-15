@@ -10,7 +10,7 @@ all: serve
 # Start PHP development server
 serve:
 	@echo "Starting PHP server on http://$(PHP_SERVER_HOST):$(PHP_SERVER_PORT)"
-	@php -S $(PHP_SERVER_HOST):$(PHP_SERVER_PORT) -t $(PUBLIC_DIR) ./router.php
+	@php -S $(PHP_SERVER_HOST):$(PHP_SERVER_PORT) -t $(PUBLIC_DIR)
 
 # Format all code
 format:

@@ -1,6 +1,6 @@
 <?php
 // Check if .env file exists
-if (!file_exists(__DIR__ . "/../.env")) {
+if (!file_exists(__DIR__ . "./../.env")) {
     die("Please create a .env file");
 }
 

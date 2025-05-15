@@ -1,4 +1,5 @@
 <?php
+
 function getJsonInput()
 {
     $json = file_get_contents("php://input");
@@ -40,4 +41,3 @@ function extractIdFromUri()
 
     return (int) $id;
 }
-?>

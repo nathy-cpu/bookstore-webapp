@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../config/database.php";
+require_once __DIR__ . "./../config/database.php";
 
 class Book
 {
@@ -126,4 +126,3 @@ class Book
         return $this;
     }
 }
-?>
