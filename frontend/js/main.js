@@ -6,8 +6,10 @@ const genreSelect = document.getElementById("genre-filter");
 const applyFiltersBtn = document.getElementById("search-btn");
 const stockCheckbox = document.querySelector('input[name="stock"]');
 const cartCount = document.getElementById("cart-count");
+const cartLink = document.getElementById("cart-link");
 
 let books = generateMockBooks();
+let cart = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   displayBooks(books);
@@ -47,15 +49,12 @@ function populateGenreFilter(bookArray) {
 }
 
 function setupEventListeners() {
-  // Mobile menu toggle
   document.getElementById("menu-btn").addEventListener("click", () => {
     document.getElementById("nav-links").classList.toggle("active");
   });
 
-  // Search & filter
   applyFiltersBtn.addEventListener("click", () => applyFilters());
 
-  // Add to cart
   catalog.addEventListener("click", (e) => {
     if (e.target.classList.contains("add-to-cart")) {
       const bookId = parseInt(e.target.dataset.id);
@@ -63,6 +62,29 @@ function setupEventListeners() {
       showToast("Added to cart!");
     }
   });
+
+  // Cart modal open
+  cartLink.addEventListener("click", (e) => {
+    if (e.target.textContent.includes("Cart")) {
+      e.preventDefault();
+      showCartModal();
+    }
+  });
+
+  // Cart modal close
+  document.querySelector(".close-btn").addEventListener("click", () => {
+    document.getElementById("cart-modal").style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    const modal = document.getElementById("cart-modal");
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  // Checkout button
+  document.getElementById("checkout-btn").addEventListener("click", checkout);
 }
 
 function applyFilters() {
@@ -83,7 +105,102 @@ function applyFilters() {
 }
 
 function addToCart(bookId) {
-  cartCount.textContent = parseInt(cartCount.textContent) + 1;
+  const book = books.find((b) => b.id === bookId);
+  const existing = cart.find((item) => item.id === bookId);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ ...book, quantity: 1 });
+  }
+  updateCartCount();
+}
+
+function updateCartCount() {
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartCount.textContent = totalItems;
+}
+
+function showCartModal() {
+  const modal = document.getElementById("cart-modal");
+  const cartItems = document.getElementById("cart-items");
+  cartItems.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartItems.innerHTML = "<p>Your cart is empty</p>";
+  } else {
+    cart.forEach((item) => {
+      const itemEl = document.createElement("div");
+      itemEl.className = "cart-item";
+      itemEl.innerHTML = `
+        <span>${item.title}</span>
+        <div class="quantity-controls">
+          <button class="decrease-qty" data-id="${item.id}">-</button>
+          <span>${item.quantity}</span>
+          <button class="increase-qty" data-id="${item.id}">+</button>
+          <span>$${(item.price * item.quantity).toFixed(2)}</span>
+          <button class="remove-item" data-id="${item.id}">×</button>
+        </div>
+      `;
+      cartItems.appendChild(itemEl);
+    });
+
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    document.getElementById(
+      "cart-total"
+    ).textContent = `Total: $${total.toFixed(2)}`;
+  }
+
+  modal.style.display = "block";
+
+  // Quantity change
+  document.querySelectorAll(".increase-qty").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const id = parseInt(btn.getAttribute("data-id"));
+      updateCartItem(id, 1);
+    })
+  );
+  document.querySelectorAll(".decrease-qty").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const id = parseInt(btn.getAttribute("data-id"));
+      updateCartItem(id, -1);
+    })
+  );
+  document.querySelectorAll(".remove-item").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const id = parseInt(btn.getAttribute("data-id"));
+      removeFromCart(id);
+    })
+  );
+}
+
+function updateCartItem(id, change) {
+  const item = cart.find((i) => i.id === id);
+  if (item) {
+    item.quantity += change;
+    if (item.quantity <= 0) {
+      cart = cart.filter((i) => i.id !== id);
+    }
+    updateCartCount();
+    showCartModal();
+  }
+}
+
+function removeFromCart(id) {
+  cart = cart.filter((i) => i.id !== id);
+  updateCartCount();
+  showCartModal();
+}
+
+function checkout() {
+  if (cart.length === 0) return;
+  const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  alert(`Order placed! Total: $${total.toFixed(2)}`);
+  cart = [];
+  updateCartCount();
+  document.getElementById("cart-modal").style.display = "none";
 }
 
 function showToast(message) {

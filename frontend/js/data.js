@@ -1,4 +1,4 @@
-export function generateMockBooks(count = 20) {
+export function generateMockBooks(count = 5) {
   const genres = [
     "Fantasy",
     "Sci-Fi",
