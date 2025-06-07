@@ -1,5 +1,1 @@
-.env
-backend/.env
-frontend/.env
-*.log
-backend/vendor/
+.qodo
