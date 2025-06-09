@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookstore</title>
+    <title>Bookstore | Discover Your Next Read</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
@@ -12,50 +12,103 @@
       <nav>
         <button id="menu-btn">☰</button>
         <ul id="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Books</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="books.html">Books</a></li>
           <li>
             <a href="#" id="cart-link">Cart (<span id="cart-count">0</span>)</a>
           </li>
-          <li><a href="/admin.html">Admin</a></li>
-          <li><a href="#" id="login-btn">Login</a></li>
+          <li id="admin-link" style="display: none">
+            <a href="/admin.html">Admin</a>
+          </li>
+          <!-- <li><a href="/admin.html">Admin</a></li> -->
+          <li><a href="login.html" id="login-btn">Login</a></li>
         </ul>
       </nav>
     </header>
 
-    <hr />
-
-    <main>
-      <section class="search-filters">
-        <input type="text" id="search-input" placeholder="Search books..." />
-        <button id="search-btn">Search</button>
-        <div class="filter-options">
-          <select id="genre-filter">
-            <option value="">All Genres</option>
-          </select>
-          <label
-            ><input type="checkbox" name="stock" value="in-stock" /> In Stock
-            Only</label
-          >
+    <div class="min-h-screen flex flex-col bg-gray-50">
+      <!-- Hero Section -->
+      <header class="hero-section">
+        <div class="container mx-auto text-center hero-content">
+          <h1 class="text-5xl font-extrabold mb-4">
+            Welcome to Abrehot Books!
+          </h1>
+          <p class="text-xl mb-6">
+            Discover the best books and download free books from our vast
+            collection.
+          </p>
+          <div class="button-group">
+            <a href="books.html" class="cta-button"> Explore Books </a>
+          </div>
         </div>
-      </section>
+      </header>
 
-      <section id="book-list" class="book-grid">
-        <!-- Books will be inserted here by JavaScript -->
-      </section>
-    </main>
+      <!-- Featured Sections -->
+      <main class="flex-grow p-2 main-content">
+        <section class="featured-section">
+          <div class="container mx-auto">
+            <h2 class="section-title">Featured Books</h2>
 
-    <!-- Add to index.html before closing body -->
-    <div id="cart-modal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Your Cart</h2>
-        <div id="cart-items"></div>
-        <div id="cart-total">Total: $0.00</div>
-        <button id="checkout-btn">Checkout</button>
-      </div>
+            <div class="book-grid">
+              <!-- Book 1 -->
+              <div class="book-card">
+                <img
+                  src="https://th.bing.com/th/id/OIP.Ya_wZbqpoMfLYpshpR12WAHaKa?rs=1&pid=ImgDetMain"
+                  alt="The Great Gatsby"
+                  class="book-image"
+                />
+                <div class="book-details">
+                  <h3 class="book-title">The Great Gatsby</h3>
+                  <p class="book-author">F. Scott Fitzgerald</p>
+                  <span class="book-category"> Classic </span>
+                </div>
+              </div>
+
+              <!-- Book 2 -->
+              <div class="book-card">
+                <img
+                  src="https://miro.medium.com/v2/resize:fit:625/0*1RTFlrLREY5zeO-I.jpg"
+                  alt="1984"
+                  class="book-image"
+                />
+                <div class="book-details">
+                  <h3 class="book-title">1984</h3>
+                  <p class="book-author">George Orwell</p>
+                  <span class="book-category"> Dystopian </span>
+                </div>
+              </div>
+
+              <!-- Book 3 -->
+              <div class="book-card">
+                <img
+                  src="https://cdn11.bigcommerce.com/s-gibnfyxosi/images/stencil/2560w/products/114990/116752/51IXWZzlgSL__41945.1615559130.jpg?c=1"
+                  alt="To Kill a Mockingbird"
+                  class="book-image"
+                />
+                <div class="book-details">
+                  <h3 class="book-title">To Kill a Mockingbird</h3>
+                  <p class="book-author">Harper Lee</p>
+                  <span class="book-category"> Historical Fiction </span>
+                </div>
+              </div>
+
+              <!-- Book 4 -->
+              <div class="book-card">
+                <img
+                  src="https://th.bing.com/th/id/R.c3908810d82aadad3e192aa30d2646e9?rik=6rH30k%2fgfq6bVA&pid=ImgRaw&r=0"
+                  alt="The Catcher in the Rye"
+                  class="book-image"
+                />
+                <div class="book-details">
+                  <h3 class="book-title">The Catcher in the Rye</h3>
+                  <p class="book-author">J.D. Salinger</p>
+                  <span class="book-category"> Coming of Age </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
-
-    <script type="module" src="js/main.js"></script>
   </body>
 </html>
