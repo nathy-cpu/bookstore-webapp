@@ -45,7 +45,15 @@ class AuthController {
                             Debug::logStackTrace("Login successful for user ID: " . $user['id']);
                             $_SESSION['user_id'] = $user['id'];
                             $_SESSION['is_admin'] = $user['is_admin'];
-                            header('Location: /books');
+                            
+                            // Redirect admin users to admin page, others to books page
+                            if ($_SESSION['is_admin']) {
+                                Debug::logStackTrace("Admin user logged in, redirecting to /admin");
+                                header('Location: /admin');
+                            } else {
+                                Debug::logStackTrace("Regular user logged in, redirecting to /books");
+                                header('Location: /books');
+                            }
                             exit;
                         }
                     } catch (Exception $e) {
@@ -120,7 +128,7 @@ class AuthController {
         require_once __DIR__ . '/../views/auth/register.php';
     }
 
-    public static function logout() {
+    public function logout() {
         Debug::logStackTrace("Processing logout request");
         session_destroy();
         header('Location: /login');

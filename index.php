@@ -71,7 +71,10 @@ try {
         $controller = new AuthController(); 
         return [$controller, 'register']; 
     });
-    $router->addRoute('GET', '/logout', [AuthController::class, 'logout']);
+    $router->addRoute('GET', '/logout', function() { 
+        $controller = new AuthController(); 
+        return [$controller, 'logout']; 
+    });
 
     // Main routes
     $router->addRoute('GET', '/', function() { 
