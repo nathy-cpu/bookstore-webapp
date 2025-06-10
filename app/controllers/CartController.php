@@ -1,38 +1,142 @@
 <?php
 require_once __DIR__ . '/../models/Cart.php';
+require_once __DIR__ . '/../models/Book.php';
 require_once __DIR__ . '/../utils/Auth.php';
+require_once __DIR__ . '/../utils/Debug.php';
 
 class CartController {
     private $cartModel;
+    private $bookModel;
 
     public function __construct() {
-        $this->cartModel = new Cart();
+        Debug::logStackTrace("Constructing CartController");
         Auth::requireLogin();
-    }
-
-    public function add($bookId) {
-        $userId = $_SESSION['user_id'];
-        if ($this->cartModel->addItem($userId, $bookId)) {
-            header('Location: /cart');
-        } else {
-            $error = 'Failed to add item to cart';
-        }
-        require_once __DIR__ . '/../views/cart/index.php';
-    }
-
-    public function remove($bookId) {
-        $userId = $_SESSION['user_id'];
-        if ($this->cartModel->removeItem($userId, $bookId)) {
-            header('Location: /cart');
-        } else {
-            $error = 'Failed to remove item from cart';
-        }
-        require_once __DIR__ . '/../views/cart/index.php';
+        $this->cartModel = new Cart();
+        $this->bookModel = new Book();
     }
 
     public function index() {
-        $userId = $_SESSION['user_id'];
-        $items = $this->cartModel->getItems($userId);
-        require_once __DIR__ . '/../views/cart/index.php';
+        Debug::logStackTrace("CartController->index() called");
+        try {
+            $userId = $_SESSION['user_id'];
+            $cartItems = $this->cartModel->getItemsWithDetails($userId);
+            require_once __DIR__ . '/../views/cart/index.php';
+        } catch (Exception $e) {
+            Debug::logStackTrace("Error in cart index: " . $e->getMessage());
+            $error = 'Failed to load cart items';
+            require_once __DIR__ . '/../views/cart/index.php';
+        }
+    }
+
+    public function add() {
+        Debug::logStackTrace("CartController->add() called");
+        try {
+            $userId = $_SESSION['user_id'];
+            $bookId = $_POST['book_id'] ?? null;
+            $quantity = $_POST['quantity'] ?? 1;
+
+            if (!$bookId) {
+                throw new Exception('Book ID is required');
+            }
+
+            // Check if book exists and has stock
+            $book = $this->bookModel->getById($bookId);
+            if (!$book) {
+                throw new Exception('Book not found');
+            }
+            if ($book['stock'] <= 0) {
+                throw new Exception('Book is out of stock');
+            }
+
+            // Add to cart
+            if ($this->cartModel->addItem($userId, $bookId, $quantity)) {
+                Debug::logStackTrace("Item added to cart successfully");
+                header('Location: /cart');
+                exit;
+            } else {
+                throw new Exception('Failed to add item to cart');
+            }
+        } catch (Exception $e) {
+            Debug::logStackTrace("Error adding to cart: " . $e->getMessage());
+            $error = $e->getMessage();
+            $this->index();
+        }
+    }
+
+    public function update() {
+        Debug::logStackTrace("CartController->update() called");
+        try {
+            $userId = $_SESSION['user_id'];
+            $bookId = $_POST['book_id'] ?? null;
+            $quantity = $_POST['quantity'] ?? null;
+
+            if (!$bookId || !$quantity) {
+                throw new Exception('Book ID and quantity are required');
+            }
+
+            // Check if book exists and has enough stock
+            $book = $this->bookModel->getById($bookId);
+            if (!$book) {
+                throw new Exception('Book not found');
+            }
+            if ($book['stock'] < $quantity) {
+                throw new Exception('Not enough stock available');
+            }
+
+            // Update cart quantity
+            if ($this->cartModel->updateQuantity($userId, $bookId, $quantity)) {
+                Debug::logStackTrace("Cart quantity updated successfully");
+                header('Location: /cart');
+                exit;
+            } else {
+                throw new Exception('Failed to update cart');
+            }
+        } catch (Exception $e) {
+            Debug::logStackTrace("Error updating cart: " . $e->getMessage());
+            $error = $e->getMessage();
+            $this->index();
+        }
+    }
+
+    public function remove() {
+        Debug::logStackTrace("CartController->remove() called");
+        try {
+            $userId = $_SESSION['user_id'];
+            $bookId = $_POST['book_id'] ?? null;
+
+            if (!$bookId) {
+                throw new Exception('Book ID is required');
+            }
+
+            if ($this->cartModel->removeItem($userId, $bookId)) {
+                Debug::logStackTrace("Item removed from cart successfully");
+                header('Location: /cart');
+                exit;
+            } else {
+                throw new Exception('Failed to remove item from cart');
+            }
+        } catch (Exception $e) {
+            Debug::logStackTrace("Error removing from cart: " . $e->getMessage());
+            $error = $e->getMessage();
+            $this->index();
+        }
+    }
+
+    public function clear() {
+        Debug::logStackTrace("CartController->clear() called");
+        try {
+            $userId = $_SESSION['user_id'];
+            if ($this->cartModel->clearCart($userId)) {
+                Debug::logStackTrace("Cart cleared successfully");
+                header('Location: /cart');
+                exit;
+            } else {
+                throw new Exception('Failed to clear cart');
+            }
+        } catch (Exception $e) {
+            Debug::logStackTrace("Error clearing cart: " . $e->getMessage());
+            $error = $e->getMessage();
+            $this->index();
+        }
     }
 } 
