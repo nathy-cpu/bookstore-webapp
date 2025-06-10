@@ -227,7 +227,7 @@ class AdminController
             View::render('admin/books/create', ['old' => $_POST]);
         } catch (Exception $e) {
             Debug::logStackTrace("Error adding book: " . $e->getMessage());
-            View::render('admin/books/create', [
+            View::render('admin/books/add', [
                 'error' => $e->getMessage(),
                 'old' => $_POST
             ]);

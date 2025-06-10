@@ -22,7 +22,7 @@ $categories = $categoryModel->getAll();
     <?php endif; ?>
 
     <div class="admin-content">
-        <form action="/admin/books/add" method="POST" class="admin-form">
+        <form action="/admin/books/create" method="POST" class="admin-form">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" 
