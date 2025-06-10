@@ -3,6 +3,8 @@ require_once __DIR__ . '/../../utils/View.php';
 View::setLayout('base');
 ?>
 
+<link rel="stylesheet" href="/public/css/books/main.css?v=<?php echo time(); ?>">
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -3,6 +3,8 @@ require_once __DIR__ . '/../../../utils/View.php';
 View::setLayout('admin');
 ?>
 
+<link rel="stylesheet" href="/public/css/admin/books.css?v=<?php echo time(); ?>">
+
 <div class="admin-container">
     <div class="admin-header">
         <h1>Books Management</h1>

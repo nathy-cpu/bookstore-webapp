@@ -21,6 +21,21 @@ if (session_status() === PHP_SESSION_NONE) {
 // Set the document root
 define('DOC_ROOT', dirname(__DIR__));
 
+// Handle static files
+if (php_sapi_name() === 'cli-server') {
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    if (strpos($uri, '/public/css/') === 0 || strpos($uri, '/public/js/') === 0) {
+        $file = DOC_ROOT . $uri;
+        if (file_exists($file)) {
+            $extension = pathinfo($file, PATHINFO_EXTENSION);
+            $content_type = $extension === 'css' ? 'text/css' : 'application/javascript';
+            header('Content-Type: ' . $content_type);
+            readfile($file);
+            exit;
+        }
+    }
+}
+
 // Load all required files
 require_once __DIR__ . '/utils/Debug.php';
 require_once __DIR__ . '/utils/Router.php';

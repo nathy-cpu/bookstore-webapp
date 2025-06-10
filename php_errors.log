@@ -1,11 +1,11 @@
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726304 Stack Trace (Application start):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224195 Stack Trace (Application start):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/index.php(6): Debug::logStackTrace()
     Arguments:
         #0: Application start
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726372 Request Info:
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224263 Request Info:
 Method: GET
-URI: /admin
+URI: /cart/count
 Query String: none
 Session ID: smkii9874lpug9oo8bcboikrc7
 Session Data: Array
@@ -18,23 +18,22 @@ Session Data: Array
 Headers:
 HOST: localhost:8000
 USER-AGENT: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
-ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+ACCEPT: */*
 ACCEPT-LANGUAGE: en-US,en;q=0.5
 ACCEPT-ENCODING: gzip, deflate, br, zstd
-REFERER: http://localhost:8000/login
+REFERER: http://localhost:8000/books
+X-REQUESTED-WITH: XMLHttpRequest
 CONNECTION: keep-alive
 COOKIE: csrftoken=MdrqUGeVKwYctJEMCsW27stIV0cYNax7; PHPSESSID=smkii9874lpug9oo8bcboikrc7
-UPGRADE-INSECURE-REQUESTS: 1
-SEC-FETCH-DEST: document
-SEC-FETCH-MODE: navigate
+SEC-FETCH-DEST: empty
+SEC-FETCH-MODE: cors
 SEC-FETCH-SITE: same-origin
-SEC-FETCH-USER: ?1
 DNT: 1
 SEC-GPC: 1
-PRIORITY: u=0, i
+PRIORITY: u=4
 
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726393 Stack Trace (Adding route: GET /login):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224288 Stack Trace (Adding route: GET /login):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /login
@@ -44,7 +43,7 @@ PRIORITY: u=0, i
         #1: /login
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726402 Stack Trace (Adding route: POST /login):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224303 Stack Trace (Adding route: POST /login):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /login
@@ -54,7 +53,7 @@ PRIORITY: u=0, i
         #1: /login
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726409 Stack Trace (Adding route: GET /register):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224311 Stack Trace (Adding route: GET /register):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /register
@@ -64,7 +63,7 @@ PRIORITY: u=0, i
         #1: /register
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726414 Stack Trace (Adding route: POST /register):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224318 Stack Trace (Adding route: POST /register):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /register
@@ -74,7 +73,7 @@ PRIORITY: u=0, i
         #1: /register
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726421 Stack Trace (Adding route: GET /logout):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224327 Stack Trace (Adding route: GET /logout):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /logout
@@ -84,7 +83,7 @@ PRIORITY: u=0, i
         #1: /logout
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726425 Stack Trace (Adding route: GET /):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224334 Stack Trace (Adding route: GET /):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /
@@ -94,7 +93,7 @@ PRIORITY: u=0, i
         #1: /
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726440 Stack Trace (Adding route: GET /books):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224343 Stack Trace (Adding route: GET /books):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /books
@@ -104,7 +103,7 @@ PRIORITY: u=0, i
         #1: /books
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726448 Stack Trace (Adding route: GET /books/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224350 Stack Trace (Adding route: GET /books/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /books/{id}
@@ -114,7 +113,7 @@ PRIORITY: u=0, i
         #1: /books/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726463 Stack Trace (Adding route: GET /books/title/{title}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224359 Stack Trace (Adding route: GET /books/title/{title}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /books/title/{title}
@@ -124,7 +123,7 @@ PRIORITY: u=0, i
         #1: /books/title/{title}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726473 Stack Trace (Adding route: GET /cart):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224370 Stack Trace (Adding route: GET /cart):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /cart
@@ -134,7 +133,7 @@ PRIORITY: u=0, i
         #1: /cart
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726484 Stack Trace (Adding route: POST /cart/add):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224379 Stack Trace (Adding route: POST /cart/add):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /cart/add
@@ -144,7 +143,7 @@ PRIORITY: u=0, i
         #1: /cart/add
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726492 Stack Trace (Adding route: POST /cart/update):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224386 Stack Trace (Adding route: POST /cart/update):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /cart/update
@@ -154,7 +153,7 @@ PRIORITY: u=0, i
         #1: /cart/update
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726501 Stack Trace (Adding route: POST /cart/remove):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224395 Stack Trace (Adding route: POST /cart/remove):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /cart/remove
@@ -164,7 +163,7 @@ PRIORITY: u=0, i
         #1: /cart/remove
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726511 Stack Trace (Adding route: POST /cart/clear):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224404 Stack Trace (Adding route: POST /cart/clear):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /cart/clear
@@ -174,7 +173,7 @@ PRIORITY: u=0, i
         #1: /cart/clear
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726521 Stack Trace (Adding route: GET /cart/count):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224411 Stack Trace (Adding route: GET /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /cart/count
@@ -184,7 +183,7 @@ PRIORITY: u=0, i
         #1: /cart/count
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726530 Stack Trace (Adding route: GET /orders):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224420 Stack Trace (Adding route: GET /orders):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /orders
@@ -194,7 +193,7 @@ PRIORITY: u=0, i
         #1: /orders
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726538 Stack Trace (Adding route: POST /orders/create):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224427 Stack Trace (Adding route: POST /orders/create):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /orders/create
@@ -204,7 +203,7 @@ PRIORITY: u=0, i
         #1: /orders/create
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726547 Stack Trace (Adding route: GET /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224435 Stack Trace (Adding route: GET /admin):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin
@@ -214,7 +213,7 @@ PRIORITY: u=0, i
         #1: /admin
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726557 Stack Trace (Adding route: GET /admin/books):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224443 Stack Trace (Adding route: GET /admin/books):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/books
@@ -224,7 +223,7 @@ PRIORITY: u=0, i
         #1: /admin/books
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726568 Stack Trace (Adding route: GET /admin/books/create):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224455 Stack Trace (Adding route: GET /admin/books/create):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/books/create
@@ -234,7 +233,7 @@ PRIORITY: u=0, i
         #1: /admin/books/create
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726578 Stack Trace (Adding route: POST /admin/books/create):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224464 Stack Trace (Adding route: POST /admin/books/create):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/books/create
@@ -244,7 +243,7 @@ PRIORITY: u=0, i
         #1: /admin/books/create
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726588 Stack Trace (Adding route: GET /admin/books/edit/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224473 Stack Trace (Adding route: GET /admin/books/edit/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/books/edit/{id}
@@ -254,7 +253,7 @@ PRIORITY: u=0, i
         #1: /admin/books/edit/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726598 Stack Trace (Adding route: POST /admin/books/edit/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224483 Stack Trace (Adding route: POST /admin/books/edit/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/books/edit/{id}
@@ -264,7 +263,7 @@ PRIORITY: u=0, i
         #1: /admin/books/edit/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726607 Stack Trace (Adding route: POST /admin/books/delete/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224493 Stack Trace (Adding route: POST /admin/books/delete/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/books/delete/{id}
@@ -274,7 +273,7 @@ PRIORITY: u=0, i
         #1: /admin/books/delete/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726618 Stack Trace (Adding route: GET /admin/users):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224502 Stack Trace (Adding route: GET /admin/users):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/users
@@ -284,7 +283,7 @@ PRIORITY: u=0, i
         #1: /admin/users
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726653 Stack Trace (Adding route: GET /admin/users/create):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224512 Stack Trace (Adding route: GET /admin/users/create):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/users/create
@@ -294,7 +293,7 @@ PRIORITY: u=0, i
         #1: /admin/users/create
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726664 Stack Trace (Adding route: POST /admin/users/create):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224520 Stack Trace (Adding route: POST /admin/users/create):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/users/create
@@ -304,7 +303,7 @@ PRIORITY: u=0, i
         #1: /admin/users/create
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726674 Stack Trace (Adding route: GET /admin/users/edit/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224529 Stack Trace (Adding route: GET /admin/users/edit/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/users/edit/{id}
@@ -314,7 +313,7 @@ PRIORITY: u=0, i
         #1: /admin/users/edit/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726687 Stack Trace (Adding route: POST /admin/users/edit/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224539 Stack Trace (Adding route: POST /admin/users/edit/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/users/edit/{id}
@@ -324,7 +323,7 @@ PRIORITY: u=0, i
         #1: /admin/users/edit/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726697 Stack Trace (Adding route: POST /admin/users/delete/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224548 Stack Trace (Adding route: POST /admin/users/delete/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/users/delete/{id}
@@ -334,7 +333,7 @@ PRIORITY: u=0, i
         #1: /admin/users/delete/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726706 Stack Trace (Adding route: GET /admin/categories):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224556 Stack Trace (Adding route: GET /admin/categories):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/categories
@@ -344,7 +343,7 @@ PRIORITY: u=0, i
         #1: /admin/categories
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726717 Stack Trace (Adding route: GET /admin/categories/create):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224565 Stack Trace (Adding route: GET /admin/categories/create):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/categories/create
@@ -354,7 +353,7 @@ PRIORITY: u=0, i
         #1: /admin/categories/create
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726727 Stack Trace (Adding route: POST /admin/categories/create):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224575 Stack Trace (Adding route: POST /admin/categories/create):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/categories/create
@@ -364,7 +363,7 @@ PRIORITY: u=0, i
         #1: /admin/categories/create
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726737 Stack Trace (Adding route: GET /admin/categories/edit/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224584 Stack Trace (Adding route: GET /admin/categories/edit/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/categories/edit/{id}
@@ -374,7 +373,7 @@ PRIORITY: u=0, i
         #1: /admin/categories/edit/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726751 Stack Trace (Adding route: POST /admin/categories/edit/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224592 Stack Trace (Adding route: POST /admin/categories/edit/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/categories/edit/{id}
@@ -384,7 +383,7 @@ PRIORITY: u=0, i
         #1: /admin/categories/edit/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726759 Stack Trace (Adding route: POST /admin/categories/delete/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224601 Stack Trace (Adding route: POST /admin/categories/delete/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/categories/delete/{id}
@@ -394,7 +393,7 @@ PRIORITY: u=0, i
         #1: /admin/categories/delete/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726771 Stack Trace (Adding route: GET /admin/orders):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224611 Stack Trace (Adding route: GET /admin/orders):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/orders
@@ -404,7 +403,7 @@ PRIORITY: u=0, i
         #1: /admin/orders
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726782 Stack Trace (Adding route: GET /admin/orders/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224620 Stack Trace (Adding route: GET /admin/orders/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: GET /admin/orders/{id}
@@ -414,7 +413,7 @@ PRIORITY: u=0, i
         #1: /admin/orders/{id}
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726794 Stack Trace (Adding route: POST /admin/orders/{id}/process):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224631 Stack Trace (Adding route: POST /admin/orders/{id}/process):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/orders/{id}/process
@@ -424,7 +423,7 @@ PRIORITY: u=0, i
         #1: /admin/orders/{id}/process
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726804 Stack Trace (Adding route: POST /admin/orders/{id}/complete):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224639 Stack Trace (Adding route: POST /admin/orders/{id}/complete):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/orders/{id}/complete
@@ -434,7 +433,7 @@ PRIORITY: u=0, i
         #1: /admin/orders/{id}/complete
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726814 Stack Trace (Adding route: POST /admin/orders/{id}/cancel):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224648 Stack Trace (Adding route: POST /admin/orders/{id}/cancel):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/orders/{id}/cancel
@@ -444,7 +443,7 @@ PRIORITY: u=0, i
         #1: /admin/orders/{id}/cancel
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726823 Stack Trace (Adding route: POST /admin/users/add):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224658 Stack Trace (Adding route: POST /admin/users/add):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(11): Debug::logStackTrace()
     Arguments:
         #0: Adding route: POST /admin/users/add
@@ -454,14 +453,14 @@ PRIORITY: u=0, i
         #1: /admin/users/add
         #2: object
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726831 Stack Trace (Routes configured, starting dispatch):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224664 Stack Trace (Routes configured, starting dispatch):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/index.php(194): Debug::logStackTrace()
     Arguments:
         #0: Routes configured, starting dispatch
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726841 Request Info:
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224673 Request Info:
 Method: GET
-URI: /admin
+URI: /cart/count
 Query String: none
 Session ID: smkii9874lpug9oo8bcboikrc7
 Session Data: Array
@@ -474,505 +473,424 @@ Session Data: Array
 Headers:
 HOST: localhost:8000
 USER-AGENT: Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0
-ACCEPT: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+ACCEPT: */*
 ACCEPT-LANGUAGE: en-US,en;q=0.5
 ACCEPT-ENCODING: gzip, deflate, br, zstd
-REFERER: http://localhost:8000/login
+REFERER: http://localhost:8000/books
+X-REQUESTED-WITH: XMLHttpRequest
 CONNECTION: keep-alive
 COOKIE: csrftoken=MdrqUGeVKwYctJEMCsW27stIV0cYNax7; PHPSESSID=smkii9874lpug9oo8bcboikrc7
-UPGRADE-INSECURE-REQUESTS: 1
-SEC-FETCH-DEST: document
-SEC-FETCH-MODE: navigate
+SEC-FETCH-DEST: empty
+SEC-FETCH-MODE: cors
 SEC-FETCH-SITE: same-origin
-SEC-FETCH-USER: ?1
 DNT: 1
 SEC-GPC: 1
-PRIORITY: u=0, i
+PRIORITY: u=4
 
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726867 Stack Trace (Starting dispatch):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224690 Stack Trace (Starting dispatch):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(59): Debug::logStackTrace()
     Arguments:
         #0: Starting dispatch
 #1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726881 Stack Trace (Dispatching request: GET /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224700 Stack Trace (Dispatching request: GET /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(64): Debug::logStackTrace()
     Arguments:
-        #0: Dispatching request: GET /admin
+        #0: Dispatching request: GET /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726891 Stack Trace (Matching route: GET /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224709 Stack Trace (Matching route: GET /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(21): Debug::logStackTrace()
     Arguments:
-        #0: Matching route: GET /admin
+        #0: Matching route: GET /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726905 Stack Trace (Checking against route: GET /login):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224720 Stack Trace (Checking against route: GET /login):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /login
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726921 Stack Trace (Testing pattern: /^\/login$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224735 Stack Trace (Testing pattern: /^\/login$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/login$/ against path: /admin
+        #0: Testing pattern: /^\/login$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726933 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224745 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726943 Stack Trace (Checking against route: POST /login):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224756 Stack Trace (Checking against route: POST /login):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: POST /login
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726953 Stack Trace (Method mismatch: POST != GET):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224765 Stack Trace (Method mismatch: POST != GET):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(26): Debug::logStackTrace()
     Arguments:
         #0: Method mismatch: POST != GET
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726963 Stack Trace (Checking against route: GET /register):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224771 Stack Trace (Checking against route: GET /register):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /register
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726970 Stack Trace (Testing pattern: /^\/register$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224781 Stack Trace (Testing pattern: /^\/register$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/register$/ against path: /admin
+        #0: Testing pattern: /^\/register$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726979 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224791 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.726989 Stack Trace (Checking against route: POST /register):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224800 Stack Trace (Checking against route: POST /register):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: POST /register
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727000 Stack Trace (Method mismatch: POST != GET):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224812 Stack Trace (Method mismatch: POST != GET):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(26): Debug::logStackTrace()
     Arguments:
         #0: Method mismatch: POST != GET
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727010 Stack Trace (Checking against route: GET /logout):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224821 Stack Trace (Checking against route: GET /logout):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /logout
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727020 Stack Trace (Testing pattern: /^\/logout$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224831 Stack Trace (Testing pattern: /^\/logout$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/logout$/ against path: /admin
+        #0: Testing pattern: /^\/logout$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727030 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224842 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727040 Stack Trace (Checking against route: GET /):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224850 Stack Trace (Checking against route: GET /):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727050 Stack Trace (Testing pattern: /^\/$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224862 Stack Trace (Testing pattern: /^\/$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/$/ against path: /admin
+        #0: Testing pattern: /^\/$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727060 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224870 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727070 Stack Trace (Checking against route: GET /books):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224879 Stack Trace (Checking against route: GET /books):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /books
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727082 Stack Trace (Testing pattern: /^\/books$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224893 Stack Trace (Testing pattern: /^\/books$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/books$/ against path: /admin
+        #0: Testing pattern: /^\/books$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727092 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224901 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727102 Stack Trace (Checking against route: GET /books/{id}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224910 Stack Trace (Checking against route: GET /books/{id}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /books/{id}
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727116 Stack Trace (Testing pattern: /^\/books\/(?P<id>[^\/]+)$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224920 Stack Trace (Testing pattern: /^\/books\/(?P<id>[^\/]+)$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/books\/(?P<id>[^\/]+)$/ against path: /admin
+        #0: Testing pattern: /^\/books\/(?P<id>[^\/]+)$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727125 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224929 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727134 Stack Trace (Checking against route: GET /books/title/{title}):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224936 Stack Trace (Checking against route: GET /books/title/{title}):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /books/title/{title}
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727142 Stack Trace (Testing pattern: /^\/books\/title\/(?P<title>[^\/]+)$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224947 Stack Trace (Testing pattern: /^\/books\/title\/(?P<title>[^\/]+)$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/books\/title\/(?P<title>[^\/]+)$/ against path: /admin
+        #0: Testing pattern: /^\/books\/title\/(?P<title>[^\/]+)$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727148 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224958 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727153 Stack Trace (Checking against route: GET /cart):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224971 Stack Trace (Checking against route: GET /cart):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /cart
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727161 Stack Trace (Testing pattern: /^\/cart$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224981 Stack Trace (Testing pattern: /^\/cart$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/cart$/ against path: /admin
+        #0: Testing pattern: /^\/cart$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727168 Stack Trace (Pattern did not match):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.224991 Stack Trace (Pattern did not match):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
     Arguments:
         #0: Pattern did not match
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727176 Stack Trace (Checking against route: POST /cart/add):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225001 Stack Trace (Checking against route: POST /cart/add):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: POST /cart/add
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727185 Stack Trace (Method mismatch: POST != GET):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225011 Stack Trace (Method mismatch: POST != GET):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(26): Debug::logStackTrace()
     Arguments:
         #0: Method mismatch: POST != GET
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727194 Stack Trace (Checking against route: POST /cart/update):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225018 Stack Trace (Checking against route: POST /cart/update):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: POST /cart/update
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727202 Stack Trace (Method mismatch: POST != GET):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225027 Stack Trace (Method mismatch: POST != GET):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(26): Debug::logStackTrace()
     Arguments:
         #0: Method mismatch: POST != GET
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727211 Stack Trace (Checking against route: POST /cart/remove):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225035 Stack Trace (Checking against route: POST /cart/remove):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: POST /cart/remove
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727221 Stack Trace (Method mismatch: POST != GET):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225045 Stack Trace (Method mismatch: POST != GET):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(26): Debug::logStackTrace()
     Arguments:
         #0: Method mismatch: POST != GET
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727232 Stack Trace (Checking against route: POST /cart/clear):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225056 Stack Trace (Checking against route: POST /cart/clear):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: POST /cart/clear
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727241 Stack Trace (Method mismatch: POST != GET):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225066 Stack Trace (Method mismatch: POST != GET):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(26): Debug::logStackTrace()
     Arguments:
         #0: Method mismatch: POST != GET
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727252 Stack Trace (Checking against route: GET /cart/count):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225075 Stack Trace (Checking against route: GET /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
     Arguments:
         #0: Checking against route: GET /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727262 Stack Trace (Testing pattern: /^\/cart\/count$/ against path: /admin):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225085 Stack Trace (Testing pattern: /^\/cart\/count$/ against path: /cart/count):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
     Arguments:
-        #0: Testing pattern: /^\/cart\/count$/ against path: /admin
+        #0: Testing pattern: /^\/cart\/count$/ against path: /cart/count
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727272 Stack Trace (Pattern did not match):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
-    Arguments:
-        #0: Pattern did not match
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727282 Stack Trace (Checking against route: GET /orders):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
-    Arguments:
-        #0: Checking against route: GET /orders
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727292 Stack Trace (Testing pattern: /^\/orders$/ against path: /admin):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
-    Arguments:
-        #0: Testing pattern: /^\/orders$/ against path: /admin
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727302 Stack Trace (Pattern did not match):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(50): Debug::logStackTrace()
-    Arguments:
-        #0: Pattern did not match
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727312 Stack Trace (Checking against route: POST /orders/create):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
-    Arguments:
-        #0: Checking against route: POST /orders/create
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727324 Stack Trace (Method mismatch: POST != GET):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(26): Debug::logStackTrace()
-    Arguments:
-        #0: Method mismatch: POST != GET
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727333 Stack Trace (Checking against route: GET /admin):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(23): Debug::logStackTrace()
-    Arguments:
-        #0: Checking against route: GET /admin
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727343 Stack Trace (Testing pattern: /^\/admin$/ against path: /admin):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(35): Debug::logStackTrace()
-    Arguments:
-        #0: Testing pattern: /^\/admin$/ against path: /admin
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
-    Arguments:
-        #0: GET
-        #1: /admin
-#2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727358 Stack Trace (Route matched with params: Array
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225101 Stack Trace (Route matched with params: Array
 (
 )
 ):
@@ -985,45 +903,39 @@ PRIORITY: u=0, i
 #1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(66): Router->matchRoute()
     Arguments:
         #0: GET
-        #1: /admin
+        #1: /cart/count
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727370 Stack Trace (Resolving lazy-loaded controller):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225112 Stack Trace (Resolving lazy-loaded controller):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(75): Debug::logStackTrace()
     Arguments:
         #0: Resolving lazy-loaded controller
 #1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.727380 Stack Trace (Constructing AdminController):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/controllers/AdminController.php(20): Debug::logStackTrace()
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225123 Stack Trace (Constructing CartController):
+#0 /home/nathnael/dev/PHP/bookstore-webapp/app/controllers/CartController.php(15): Debug::logStackTrace()
     Arguments:
-        #0: Constructing AdminController
-#1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(89): AdminController->__construct()
+        #0: Constructing CartController
+#1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(73): CartController->__construct()
 #2 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(76): {closure}()
 #3 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.728033 Stack Trace (Calling controller: AdminController->index):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225847 Stack Trace (Calling controller: CartController->getCartCount):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(83): Debug::logStackTrace()
     Arguments:
-        #0: Calling controller: AdminController->index
+        #0: Calling controller: CartController->getCartCount
 #1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.728061 Stack Trace (Calling without params):
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225886 Stack Trace (Calling without params):
 #0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(89): Debug::logStackTrace()
     Arguments:
         #0: Calling without params
 #1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.728074 Stack Trace (AdminController->index() called):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/controllers/AdminController.php(40): Debug::logStackTrace()
+[10-Jun-2025 12:18:58 UTC] 2025-06-10 12:18:58.225900 Stack Trace (CartController->getCartCount() called):
+#0 /home/nathnael/dev/PHP/bookstore-webapp/app/controllers/CartController.php(181): Debug::logStackTrace()
     Arguments:
-        #0: AdminController->index() called
-#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(90): AdminController->index()
+        #0: CartController->getCartCount() called
+#1 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(90): CartController->getCartCount()
 #2 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
-
-[10-Jun-2025 11:48:31 UTC] 2025-06-10 11:48:31.728513 Stack Trace (Controller call completed):
-#0 /home/nathnael/dev/PHP/bookstore-webapp/app/utils/Router.php(92): Debug::logStackTrace()
-    Arguments:
-        #0: Controller call completed
-#1 /home/nathnael/dev/PHP/bookstore-webapp/index.php(195): Router->dispatch()
 
