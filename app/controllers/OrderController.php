@@ -1,16 +1,19 @@
 <?php
+
 require_once __DIR__ . '/../models/Order.php';
 require_once __DIR__ . '/../models/Book.php';
 require_once __DIR__ . '/../models/Cart.php';
 require_once __DIR__ . '/../utils/Auth.php';
 require_once __DIR__ . '/../utils/Debug.php';
 
-class OrderController {
+class OrderController
+{
     private $orderModel;
     private $bookModel;
     private $cartModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         Debug::logStackTrace("Constructing OrderController");
         Auth::requireLogin();
         $this->orderModel = new Order();
@@ -18,7 +21,8 @@ class OrderController {
         $this->cartModel = new Cart();
     }
 
-    public function create() {
+    public function create()
+    {
         Debug::logStackTrace("OrderController->create() called");
         try {
             $userId = $_SESSION['user_id'];
@@ -31,7 +35,7 @@ class OrderController {
                 if (empty($cartItems)) {
                     throw new Exception('Cart is empty');
                 }
-                $items = array_map(function($item) {
+                $items = array_map(function ($item) {
                     return [
                         'book_id' => $item['book_id'],
                         'quantity' => $item['quantity'],
@@ -79,7 +83,8 @@ class OrderController {
         }
     }
 
-    public function index() {
+    public function index()
+    {
         Debug::logStackTrace("OrderController->index() called");
         try {
             $userId = $_SESSION['user_id'];
@@ -91,4 +96,4 @@ class OrderController {
             require_once __DIR__ . '/../views/orders/index.php';
         }
     }
-} 
+}

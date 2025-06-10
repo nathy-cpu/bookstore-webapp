@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/app/utils/Router.php';
 require_once __DIR__ . '/app/controllers/HomeController.php';
 require_once __DIR__ . '/app/controllers/BookController.php';
@@ -66,4 +67,4 @@ $router->dispatch();
 // Simulate deleting a book
 $_SERVER['REQUEST_METHOD'] = 'POST';
 $_SERVER['REQUEST_URI'] = '/admin/books/delete/1';
-$router->dispatch(); 
+$router->dispatch();

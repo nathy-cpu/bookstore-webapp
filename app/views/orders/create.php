@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Create Order</h1>
-    <?php if (isset($error)): ?>
+    <?php if (isset($error)) : ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php endif; ?>
     <form method="POST" action="/orders/create">

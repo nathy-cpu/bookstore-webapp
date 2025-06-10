@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/app/utils/Router.php';
 require_once __DIR__ . '/app/controllers/HomeController.php';
 require_once __DIR__ . '/app/controllers/BookController.php';
@@ -31,4 +32,4 @@ $_SERVER['REQUEST_URI'] = '/books/title/Test Book';
 $router->dispatch();
 
 $bookModel = new Book();
-$book = $bookModel->getByTitle('Some Book Title'); 
+$book = $bookModel->getByTitle('Some Book Title');

@@ -1,0 +1,17 @@
+parameters:
+    level: 5
+    paths:
+        - app
+    excludePaths:
+        - vendor
+    ignoreErrors:
+        - 
+            message: '#Each class should have a namespace.#'
+            paths:
+                - app/*
+        - 
+            message: '#Instantiated class .* not found.#'
+            paths:
+                - app/*
+        -
+            identifier: 'missingType.iterableValue' 

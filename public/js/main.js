@@ -1,21 +1,36 @@
 // Cart quantity update handler
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle quantity updates in cart
-    const quantityInputs = document.querySelectorAll('.cart-quantity-input');
-    quantityInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            this.form.submit();
-        });
-    });
+    // Initialize quantity input handlers
+    initializeQuantityInputs();
 
-    // Handle form submissions to prevent double submission
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function() {
-            const submitButtons = this.querySelectorAll('button[type="submit"]');
-            submitButtons.forEach(button => {
-                button.disabled = true;
-                button.textContent = 'Processing...';
+    // Update cart count on page load
+    updateCartCount();
+
+    // Handle add to cart buttons
+    document.querySelectorAll('form[action="/cart/add"]').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            fetch('/cart/add', {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    showMessage('success', data.message);
+                    // Update cart count
+                    updateCartCount();
+                } else {
+                    showMessage('error', data.message);
+                }
+            })
+            .catch(error => {
+                showMessage('error', 'An error occurred. Please try again.');
             });
         });
     });
@@ -176,4 +191,89 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-}); 
+});
+
+function initializeQuantityInputs() {
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    quantityInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            if (this.value < 1) this.value = 1;
+            const form = this.closest('form');
+            if (form && form.getAttribute('action') === '/cart/update') {
+                form.submit();
+            }
+        });
+    });
+}
+
+function updateCartCount() {
+    if (!document.getElementById('cart-count')) return;
+    
+    fetch('/cart/count', {
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (!data.error) {
+            document.getElementById('cart-count').textContent = data.count;
+        }
+    })
+    .catch(error => console.error('Error updating cart count:', error));
+}
+
+function showMessage(type, text) {
+    // Remove any existing message
+    const existingMessage = document.getElementById('message-container');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+
+    // Create message container
+    const messageContainer = document.createElement('div');
+    messageContainer.id = 'message-container';
+    messageContainer.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        border-radius: 5px;
+        z-index: 1000;
+        animation: slideIn 0.3s ease-out;
+    `;
+
+    // Set color based on message type
+    if (type === 'success') {
+        messageContainer.style.backgroundColor = '#4CAF50';
+        messageContainer.style.color = 'white';
+    } else {
+        messageContainer.style.backgroundColor = '#f44336';
+        messageContainer.style.color = 'white';
+    }
+
+    messageContainer.textContent = text;
+
+    // Add to document
+    document.body.appendChild(messageContainer);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        messageContainer.style.animation = 'slideOut 0.3s ease-in';
+        setTimeout(() => messageContainer.remove(), 300);
+    }, 3000);
+}
+
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style); 

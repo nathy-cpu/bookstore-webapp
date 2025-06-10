@@ -9,7 +9,7 @@
         </span>
     </div>
     <div class="order-items">
-        <?php foreach ($orderItems as $item): ?>
+        <?php foreach ($orderItems as $item) : ?>
             <div class="order-item">
                 <div>
                     <strong><?php echo htmlspecialchars($item['title']); ?></strong>

@@ -1,21 +1,25 @@
 <?php
+
 require_once __DIR__ . '/../models/Cart.php';
 require_once __DIR__ . '/../models/Book.php';
 require_once __DIR__ . '/../utils/Auth.php';
 require_once __DIR__ . '/../utils/Debug.php';
 
-class CartController {
+class CartController
+{
     private $cartModel;
     private $bookModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         Debug::logStackTrace("Constructing CartController");
         Auth::requireLogin();
         $this->cartModel = new Cart();
         $this->bookModel = new Book();
     }
 
-    public function index() {
+    public function index()
+    {
         Debug::logStackTrace("CartController->index() called");
         try {
             $userId = $_SESSION['user_id'];
@@ -28,7 +32,8 @@ class CartController {
         }
     }
 
-    public function add() {
+    public function add()
+    {
         Debug::logStackTrace("CartController->add() called");
         try {
             $userId = $_SESSION['user_id'];
@@ -51,6 +56,23 @@ class CartController {
             // Add to cart
             if ($this->cartModel->addItem($userId, $bookId, $quantity)) {
                 Debug::logStackTrace("Item added to cart successfully");
+
+                // If it's an AJAX request, return JSON response
+                if (
+                    !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+                    strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+                ) {
+                    header('Content-Type: application/json');
+                    $cartCount = $this->cartModel->getCartItemCount($userId);
+                    echo json_encode([
+                        'success' => true,
+                        'message' => 'Item added to cart successfully',
+                        'cartCount' => $cartCount
+                    ]);
+                    exit;
+                }
+
+                // For non-AJAX requests, redirect to cart page
                 header('Location: /cart');
                 exit;
             } else {
@@ -58,12 +80,24 @@ class CartController {
             }
         } catch (Exception $e) {
             Debug::logStackTrace("Error adding to cart: " . $e->getMessage());
+            if (
+                !empty($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+                strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'
+            ) {
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => false,
+                    'message' => $e->getMessage()
+                ]);
+                exit;
+            }
             $error = $e->getMessage();
             $this->index();
         }
     }
 
-    public function update() {
+    public function update()
+    {
         Debug::logStackTrace("CartController->update() called");
         try {
             $userId = $_SESSION['user_id'];
@@ -98,7 +132,8 @@ class CartController {
         }
     }
 
-    public function remove() {
+    public function remove()
+    {
         Debug::logStackTrace("CartController->remove() called");
         try {
             $userId = $_SESSION['user_id'];
@@ -122,7 +157,8 @@ class CartController {
         }
     }
 
-    public function clear() {
+    public function clear()
+    {
         Debug::logStackTrace("CartController->clear() called");
         try {
             $userId = $_SESSION['user_id'];
@@ -139,4 +175,20 @@ class CartController {
             $this->index();
         }
     }
-} 
+
+    public function getCartCount()
+    {
+        Debug::logStackTrace("CartController->getCartCount() called");
+        try {
+            $userId = $_SESSION['user_id'];
+            $count = $this->cartModel->getCartItemCount($userId);
+            header('Content-Type: application/json');
+            echo json_encode(['count' => $count]);
+        } catch (Exception $e) {
+            Debug::logStackTrace("Error getting cart count: " . $e->getMessage());
+            header('Content-Type: application/json');
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+        exit;
+    }
+}

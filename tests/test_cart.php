@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/app/utils/Router.php';
 require_once __DIR__ . '/app/controllers/HomeController.php';
 require_once __DIR__ . '/app/controllers/BookController.php';
@@ -29,4 +30,4 @@ $router->dispatch();
 // Simulate removing an item from the cart
 $_SERVER['REQUEST_METHOD'] = 'POST';
 $_SERVER['REQUEST_URI'] = '/cart/remove/1';
-$router->dispatch(); 
+$router->dispatch();

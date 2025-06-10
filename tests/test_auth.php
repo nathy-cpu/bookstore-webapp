@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once __DIR__ . '/app/utils/Database.php';
 require_once __DIR__ . '/app/models/User.php';
@@ -31,4 +32,4 @@ if (Auth::isLoggedIn()) {
     echo "Accessing protected route: User is logged in.\n";
 } else {
     echo "Accessing protected route: User is not logged in.\n";
-} 
+}

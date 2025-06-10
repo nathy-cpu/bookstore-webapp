@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/app/utils/Router.php';
 require_once __DIR__ . '/app/controllers/HomeController.php';
 
@@ -9,4 +10,4 @@ $router->addRoute('GET', '/', [new HomeController(), 'index']);
 $_SERVER['REQUEST_METHOD'] = 'GET';
 $_SERVER['REQUEST_URI'] = '/';
 
-$router->dispatch(); 
+$router->dispatch();

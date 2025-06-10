@@ -1,15 +1,19 @@
 <?php
+
 require_once __DIR__ . '/../utils/Database.php';
 require_once __DIR__ . '/../utils/Debug.php';
 
-class Order {
+class Order
+{
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = Database::getInstance()->getConnection();
     }
 
-    public function create($userId, $items) {
+    public function create($userId, $items)
+    {
         Debug::logStackTrace("Creating order for user: " . $userId);
         try {
             // Calculate total amount
@@ -63,7 +67,6 @@ class Order {
             $this->db->commit();
             Debug::logStackTrace("Order created successfully: " . $orderId);
             return true;
-
         } catch (Exception $e) {
             // Rollback on error
             $this->db->rollBack();
@@ -72,7 +75,8 @@ class Order {
         }
     }
 
-    public function getByUserId($userId) {
+    public function getByUserId($userId)
+    {
         $stmt = $this->db->prepare('
             SELECT o.*, oi.book_id, oi.quantity, oi.price_at_time, b.title, b.author
             FROM orders o
@@ -85,15 +89,52 @@ class Order {
         return $stmt->fetchAll();
     }
 
-    public function getById($orderId) {
+    public function getById($orderId)
+    {
         $stmt = $this->db->prepare('
-            SELECT o.*, oi.book_id, oi.quantity, oi.price_at_time, b.title, b.author
+            SELECT o.*, 
+                   oi.book_id, oi.quantity, oi.price_at_time, 
+                   b.title, b.author,
+                   u.email as user_email,
+                   u.first_name as user_first_name,
+                   u.last_name as user_last_name
             FROM orders o
             JOIN order_items oi ON o.id = oi.order_id
             JOIN books b ON oi.book_id = b.id
+            JOIN users u ON o.user_id = u.id
             WHERE o.id = ?
         ');
         $stmt->execute([$orderId]);
         return $stmt->fetchAll();
     }
-} 
+
+    public function getAll()
+    {
+        $stmt = $this->db->prepare('
+            SELECT DISTINCT o.*, 
+                   u.email as user_email,
+                   u.first_name as user_first_name,
+                   u.last_name as user_last_name
+            FROM orders o
+            JOIN users u ON o.user_id = u.id
+            ORDER BY o.created_at DESC
+        ');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function updateStatus($orderId, $status)
+    {
+        $validStatuses = ['PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED'];
+        if (!in_array(strtoupper($status), $validStatuses)) {
+            throw new Exception('Invalid order status');
+        }
+
+        $stmt = $this->db->prepare('
+            UPDATE orders 
+            SET status = ?, updated_at = CURRENT_TIMESTAMP 
+            WHERE id = ?
+        ');
+        return $stmt->execute([strtoupper($status), $orderId]);
+    }
+}

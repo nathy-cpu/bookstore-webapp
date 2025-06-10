@@ -1,14 +1,18 @@
 <?php
+
 require_once __DIR__ . '/../utils/Database.php';
 
-class Cart {
+class Cart
+{
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = Database::getInstance()->getConnection();
     }
 
-    public function addItem($userId, $bookId, $quantity = 1) {
+    public function addItem($userId, $bookId, $quantity = 1)
+    {
         // First check if item already exists in cart
         $stmt = $this->db->prepare('SELECT quantity FROM cart WHERE user_id = ? AND book_id = ?');
         $stmt->execute([$userId, $bookId]);
@@ -26,22 +30,26 @@ class Cart {
         }
     }
 
-    public function updateQuantity($userId, $bookId, $quantity) {
+    public function updateQuantity($userId, $bookId, $quantity)
+    {
         $stmt = $this->db->prepare('UPDATE cart SET quantity = ? WHERE user_id = ? AND book_id = ?');
         return $stmt->execute([$quantity, $userId, $bookId]);
     }
 
-    public function removeItem($userId, $bookId) {
+    public function removeItem($userId, $bookId)
+    {
         $stmt = $this->db->prepare('DELETE FROM cart WHERE user_id = ? AND book_id = ?');
         return $stmt->execute([$userId, $bookId]);
     }
 
-    public function clearCart($userId) {
+    public function clearCart($userId)
+    {
         $stmt = $this->db->prepare('DELETE FROM cart WHERE user_id = ?');
         return $stmt->execute([$userId]);
     }
 
-    public function getItemsWithDetails($userId) {
+    public function getItemsWithDetails($userId)
+    {
         $stmt = $this->db->prepare('
             SELECT c.*, b.title, b.author, b.price, b.stock 
             FROM cart c 
@@ -52,9 +60,21 @@ class Cart {
         return $stmt->fetchAll();
     }
 
-    public function getItems($userId) {
+    public function getItems($userId)
+    {
         $stmt = $this->db->prepare('SELECT * FROM cart WHERE user_id = ?');
         $stmt->execute([$userId]);
         return $stmt->fetchAll();
     }
-} 
+
+    public function getCartItemCount($userId)
+    {
+        $stmt = $this->db->prepare('
+            SELECT COALESCE(SUM(quantity), 0) as total_items 
+            FROM cart 
+            WHERE user_id = ?
+        ');
+        $stmt->execute([$userId]);
+        return (int)$stmt->fetchColumn();
+    }
+}

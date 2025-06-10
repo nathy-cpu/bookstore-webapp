@@ -6,17 +6,6 @@
     <title>Bookstore</title>
     <!-- Add timestamp to prevent caching during development -->
     <link rel="stylesheet" href="/css/main.css?v=<?php echo time(); ?>">
-    <script>
-        // Debug static file loading
-        console.log('Base template loaded');
-        document.addEventListener('DOMContentLoaded', function() {
-            const style = getComputedStyle(document.body);
-            console.log('CSS loaded:', {
-                navBg: style.getPropertyValue('--nav-bg'),
-                containerWidth: style.getPropertyValue('--container-width')
-            });
-        });
-    </script>
 </head>
 <body>
     <?php
@@ -31,14 +20,14 @@
             <div class="container">
                 <a href="/">Home</a>
                 <a href="/books">Books</a>
-                <a href="/cart">Cart</a>
+                <a href="/cart">Cart (<span id="cart-count">0</span>)</a>
                 <a href="/orders">Orders</a>
-                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+                <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']) : ?>
                     <a href="/admin">Admin</a>
                 <?php endif; ?>
-                <?php if (isset($_SESSION['user_id'])): ?>
+                <?php if (isset($_SESSION['user_id'])) : ?>
                     <a href="/logout">Logout</a>
-                <?php else: ?>
+                <?php else : ?>
                     <a href="/login">Login</a>
                 <?php endif; ?>
             </div>
@@ -46,19 +35,19 @@
     </header>
 
     <main class="container">
-        <?php if (isset($_GET['error'])): ?>
+        <?php if (isset($_GET['error'])) : ?>
             <div class="flash-message flash-error">
                 <?php echo htmlspecialchars($_GET['error']); ?>
             </div>
         <?php endif; ?>
 
-        <?php if (isset($_GET['success'])): ?>
+        <?php if (isset($_GET['success'])) : ?>
             <div class="flash-message flash-success">
                 <?php echo htmlspecialchars($_GET['success']); ?>
             </div>
         <?php endif; ?>
 
-        <?php include $content; ?>
+        <?php echo $content; ?>
     </main>
 
     <footer>

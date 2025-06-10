@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <?php if (isset($error)): ?>
+    <?php if (isset($error)) : ?>
         <p class="<?php echo strpos($error, 'system') !== false ? 'system-error' : 'error'; ?>">
             <?php echo htmlspecialchars($error); ?>
         </p>

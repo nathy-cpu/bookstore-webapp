@@ -58,20 +58,20 @@
 </head>
 <body>
     <h1>Your Orders</h1>
-    <?php if (isset($error)): ?>
+    <?php if (isset($error)) : ?>
         <p style="color: red;"><?php echo $error; ?></p>
     <?php endif; ?>
 
-    <?php if (empty($orders)): ?>
+    <?php if (empty($orders)) : ?>
         <p>You haven't placed any orders yet. <a href="/books">Browse books</a></p>
-    <?php else: ?>
+    <?php else : ?>
         <div class="order-list">
-            <?php 
+            <?php
             $currentOrderId = null;
             $orderTotal = 0;
             $orderItems = [];
-            
-            foreach ($orders as $order):
+
+            foreach ($orders as $order) :
                 if ($currentOrderId !== $order['id']) {
                     // Display previous order if exists
                     if ($currentOrderId !== null) {
@@ -82,7 +82,7 @@
                     $orderTotal = $order['total_amount'];
                     $orderItems = [];
                 }
-                
+
                 $orderItems[] = [
                     'title' => $order['title'],
                     'author' => $order['author'],
@@ -90,7 +90,7 @@
                     'price' => $order['price_at_time']
                 ];
             endforeach;
-            
+
             // Display last order
             if ($currentOrderId !== null) {
                 require __DIR__ . '/_order_template.php';

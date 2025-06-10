@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/app/utils/Router.php';
 require_once __DIR__ . '/app/controllers/HomeController.php';
 require_once __DIR__ . '/app/controllers/BookController.php';
@@ -28,4 +29,4 @@ $router->dispatch();
 // Simulate placing a new order
 $_SERVER['REQUEST_METHOD'] = 'POST';
 $_SERVER['REQUEST_URI'] = '/orders/place';
-$router->dispatch(); 
+$router->dispatch();

@@ -1,156 +1,196 @@
 <?php
+
 require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/app/utils/Database.php';
 
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$pdo = new PDO(
-    "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};charset=utf8mb4",
-    $_ENV['DB_USER'],
-    $_ENV['DB_PASS'],
-    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-);
+try {
+    $db = Database::getInstance()->getConnection();
 
-// Drop existing tables if they exist (in correct order respecting foreign keys)
-$pdo->exec("DROP TABLE IF EXISTS order_items");
-$pdo->exec("DROP TABLE IF EXISTS cart");
-$pdo->exec("DROP TABLE IF EXISTS orders");
-$pdo->exec("DROP TABLE IF EXISTS sessions");
-$pdo->exec("DROP TABLE IF EXISTS books");
-$pdo->exec("DROP TABLE IF EXISTS users");
+    // Drop existing tables if they exist (in correct order respecting foreign keys)
+    $db->exec("DROP TABLE IF EXISTS order_items");
+    $db->exec("DROP TABLE IF EXISTS cart");
+    $db->exec("DROP TABLE IF EXISTS orders");
+    $db->exec("DROP TABLE IF EXISTS sessions");
+    $db->exec("DROP TABLE IF EXISTS books");
+    $db->exec("DROP TABLE IF EXISTS categories");
+    $db->exec("DROP TABLE IF EXISTS users");
 
-// Create users table
-$pdo->exec("
-    CREATE TABLE users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
+    // Create categories table
+    $db->exec("CREATE TABLE IF NOT EXISTS categories (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(100) NOT NULL UNIQUE,
+        description TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )");
+
+    // Create users table
+    $db->exec("CREATE TABLE IF NOT EXISTS users (
+        id INT PRIMARY KEY AUTO_INCREMENT,
         email VARCHAR(255) NOT NULL UNIQUE,
         password_hash VARCHAR(255) NOT NULL,
-        is_admin TINYINT(1) NOT NULL DEFAULT 0,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-");
+        first_name VARCHAR(100) NOT NULL,
+        last_name VARCHAR(100) NOT NULL,
+        phone_number VARCHAR(20),
+        is_admin BOOLEAN DEFAULT FALSE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )");
 
-// Create sessions table
-$pdo->exec("
-    CREATE TABLE sessions (
+    // Create sessions table
+    $db->exec("CREATE TABLE IF NOT EXISTS sessions (
         id VARCHAR(255) PRIMARY KEY,
         user_id INT NOT NULL,
         data TEXT,
         last_accessed TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-    )
-");
+    )");
 
-// Create books table
-$pdo->exec("
-    CREATE TABLE books (
-        id INT AUTO_INCREMENT PRIMARY KEY,
+    // Create books table with category_id
+    $db->exec("CREATE TABLE IF NOT EXISTS books (
+        id INT PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(255) NOT NULL,
         author VARCHAR(255) NOT NULL,
         description TEXT,
-        price DECIMAL(10, 2) NOT NULL,
+        price DECIMAL(10,2) NOT NULL,
         stock INT NOT NULL DEFAULT 0,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-");
-
-// Create orders table
-$pdo->exec("
-    CREATE TABLE orders (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        user_id INT NOT NULL,
-        total_amount DECIMAL(10, 2) NOT NULL,
-        status ENUM('pending', 'completed', 'cancelled') NOT NULL DEFAULT 'pending',
+        isbn VARCHAR(13),
+        category_id INT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-    )
-");
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
+    )");
 
-// Create order_items table
-$pdo->exec("
-    CREATE TABLE order_items (
-        id INT AUTO_INCREMENT PRIMARY KEY,
+    // Create cart table
+    $db->exec("CREATE TABLE IF NOT EXISTS cart (
+        user_id INT NOT NULL,
+        book_id INT NOT NULL,
+        quantity INT NOT NULL DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (user_id, book_id),
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+    )");
+
+    // Create orders table
+    $db->exec("CREATE TABLE IF NOT EXISTS orders (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        total_amount DECIMAL(10,2) NOT NULL,
+        status VARCHAR(50) NOT NULL DEFAULT 'pending',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )");
+
+    // Create order_items table
+    $db->exec("CREATE TABLE IF NOT EXISTS order_items (
         order_id INT NOT NULL,
         book_id INT NOT NULL,
         quantity INT NOT NULL,
-        price_at_time DECIMAL(10, 2) NOT NULL,
+        price_at_time DECIMAL(10,2) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (order_id, book_id),
         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
         FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
-    )
-");
+    )");
 
-// Create cart table
-$pdo->exec("
-    CREATE TABLE cart (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        user_id INT NOT NULL,
-        book_id INT NOT NULL,
-        quantity INT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-        FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
-    )
-");
+    // Insert some default categories
+    $categories = [
+        [
+            'name' => 'Fiction',
+            'description' => 'Fictional literature including novels and short stories'
+        ],
+        [
+            'name' => 'Non-Fiction',
+            'description' => 'Factual books including biographies, history, and self-help'
+        ],
+        [
+            'name' => 'Science Fiction',
+            'description' => 'Books about futuristic technology, space exploration, and alternate realities'
+        ],
+        ['name' => 'Mystery', 'description' => 'Detective stories, crime fiction, and suspense novels'],
+        ['name' => 'Romance', 'description' => 'Love stories and romantic literature'],
+        ['name' => 'Technology', 'description' => 'Books about computers, programming, and technology'],
+        ['name' => 'Business', 'description' => 'Books about entrepreneurship, management, and finance'],
+        ['name' => 'Children', 'description' => 'Books for young readers']
+    ];
 
-// Insert test data
+    $stmt = $db->prepare("INSERT INTO categories (name, description) VALUES (?, ?)");
+    foreach ($categories as $category) {
+        $stmt->execute([$category['name'], $category['description']]);
+    }
 
-// Test users with proper password hashing
-$users = [
-    ['email' => 'admin@example.com', 'password' => 'admin123', 'is_admin' => 1],
-    ['email' => 'user@example.com', 'password' => 'user123', 'is_admin' => 0],
-    ['email' => 'john@example.com', 'password' => 'john123', 'is_admin' => 0]
-];
+    // Create admin user if not exists
+    $adminEmail = 'admin@example.com';
+    $adminPassword = 'admin123'; // In production, use a secure password
+    $adminPasswordHash = password_hash($adminPassword, PASSWORD_DEFAULT);
 
-$stmt = $pdo->prepare("INSERT INTO users (email, password_hash, is_admin) VALUES (?, ?, ?)");
-foreach ($users as $user) {
-    $stmt->execute([
-        $user['email'],
-        password_hash($user['password'], PASSWORD_DEFAULT),
-        $user['is_admin']
-    ]);
+    $stmt = $db->prepare(
+        "INSERT INTO users (email, password_hash, first_name, last_name, is_admin) 
+        VALUES (?, ?, ?, ?, TRUE)"
+    );
+    $stmt->execute([$adminEmail, $adminPasswordHash, 'Admin', 'User']);
+
+    // Insert some sample books
+    $fiction = $db->query("SELECT id FROM categories WHERE name = 'Fiction'")
+        ->fetch()['id'];
+    $scifi = $db->query("SELECT id FROM categories WHERE name = 'Science Fiction'")
+        ->fetch()['id'];
+    $mystery = $db->query("SELECT id FROM categories WHERE name = 'Mystery'")
+        ->fetch()['id'];
+
+    $books = [
+        [
+            'title' => 'The Great Gatsby',
+            'author' => 'F. Scott Fitzgerald',
+            'description' => 'A story of decadence and excess.',
+            'price' => 550.00, // ~$10
+            'stock' => 50,
+            'category_id' => $fiction
+        ],
+        [
+            'title' => 'Dune',
+            'author' => 'Frank Herbert',
+            'description' => 'A science fiction masterpiece about a desert planet.',
+            'price' => 715.00, // ~$13
+            'stock' => 30,
+            'category_id' => $scifi
+        ],
+        [
+            'title' => 'The Da Vinci Code',
+            'author' => 'Dan Brown',
+            'description' => 'A mystery thriller about hidden symbols and secret societies.',
+            'isbn' => '9780307474278',
+            'price' => 660.00, // ~$12
+            'stock' => 40,
+            'category_id' => $mystery
+        ]
+    ];
+
+    $stmt = $db->prepare(
+        "INSERT INTO books (title, author, description, price, stock, category_id) 
+        VALUES (?, ?, ?, ?, ?, ?)"
+    );
+    foreach ($books as $book) {
+        $stmt->execute([
+            $book['title'],
+            $book['author'],
+            $book['description'],
+            $book['price'],
+            $book['stock'],
+            $book['category_id']
+        ]);
+    }
+
+    echo "Database setup completed successfully!\n";
+} catch (PDOException $e) {
+    die("Database setup failed: " . $e->getMessage() . "\n");
 }
-
-// Test books
-$pdo->exec("
-    INSERT INTO books (title, author, description, price, stock) VALUES
-    ('The Great Gatsby', 'F. Scott Fitzgerald', 'A story of decadence and excess.', 9.99, 50),
-    ('To Kill a Mockingbird', 'Harper Lee', 'A classic of modern American literature.', 12.99, 45),
-    ('1984', 'George Orwell', 'A dystopian social science fiction novel.', 10.99, 30),
-    ('Pride and Prejudice', 'Jane Austen', 'A romantic novel of manners.', 8.99, 25),
-    ('The Hobbit', 'J.R.R. Tolkien', 'A fantasy novel and children''s book.', 14.99, 60)
-");
-
-// Test orders for user@example.com (user id 2)
-$pdo->exec("
-    INSERT INTO orders (user_id, total_amount, status) VALUES
-    (2, 32.97, 'completed'),
-    (2, 14.99, 'pending'),
-    (2, 21.98, 'cancelled')
-");
-
-// Test order items
-$pdo->exec("
-    INSERT INTO order_items (order_id, book_id, quantity, price_at_time) VALUES
-    (1, 1, 2, 9.99),  -- 2 copies of The Great Gatsby
-    (1, 3, 1, 12.99), -- 1 copy of 1984
-    (2, 5, 1, 14.99), -- 1 copy of The Hobbit
-    (3, 2, 1, 12.99), -- 1 copy of To Kill a Mockingbird
-    (3, 4, 1, 8.99)   -- 1 copy of Pride and Prejudice
-");
-
-// Test cart items for john@example.com (user id 3)
-$pdo->exec("
-    INSERT INTO cart (user_id, book_id, quantity) VALUES
-    (3, 1, 1), -- The Great Gatsby
-    (3, 4, 2)  -- 2 copies of Pride and Prejudice
-");
-
-echo "Database setup completed successfully!\n";
-echo "\nTest accounts created:\n";
-foreach ($users as $user) {
-    echo "Email: {$user['email']}, Password: {$user['password']}" . 
-         ($user['is_admin'] ? " (Admin)\n" : "\n");
-} 
